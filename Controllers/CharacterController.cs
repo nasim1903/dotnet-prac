@@ -22,6 +22,12 @@ namespace dotnet_prac.Controllers
             return Ok(characters);
         }
 
+        [HttpGet("{id}")]
+        public ActionResult<Character> GetSingle(int id)
+        {
+            return Ok(characters.FirstOrDefault(c => c.id == id));
+        }
+
         [HttpPost]
         public ActionResult<List<Character>> AddCharacter(Character newCharacter)
         {
