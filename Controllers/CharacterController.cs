@@ -6,14 +6,14 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace dotnet_prac.Controllers
 {
-    
+
     [ApiController] // Used to serve automatic HTTP responses such as status code 404 
     [Route("[controller]")]
     public class CharacterController : ControllerBase
     {
         private static List<Character> characters = new List<Character> {
-            new Character("Fredo"),
-            new Character("Sam")
+            new Character(),
+            new Character{Name = "Sam"}
         };
 
         [HttpGet]
@@ -21,13 +21,14 @@ namespace dotnet_prac.Controllers
         {
             return Ok(characters);
         }
-         
-        [HttpGet("{id}")]
-        public ActionResult<Character> GetOne(int id )
+
+        [HttpPost]
+        public ActionResult<List<Character>> AddCharacter(Character newCharacter)
         {
-            return Ok(characters.FirstOrDefault(c => c.id == id));
+            characters.Add(newCharacter);
+            return Ok(characters);
         }
+    }
 
 
-    } 
-}
+} 
