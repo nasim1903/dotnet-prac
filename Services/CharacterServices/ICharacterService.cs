@@ -7,8 +7,8 @@ namespace dotnet_prac.Services.CharacterServices
 {
     public interface ICharacterService
     {
-        List<Character> GetAllCharacters();
-        Character GetCharacterById(int id);
-        List<Character>  AddSingleCharacter(Character newCharacter);
+        Task<List<Character>> GetAllCharacters();
+        Task<Character> GetCharacterById(int id);
+        Task<List<Character>>  AddSingleCharacter(Character newCharacter);
     }
 }
