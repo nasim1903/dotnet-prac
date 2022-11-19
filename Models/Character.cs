@@ -7,8 +7,8 @@ namespace dotnet_prac.Models
 {
     public class Character
     {
-        public static int idNum = 0;
-        public int id { get; set; } = idNum;
+        public static int totalCharacters = 0;
+        public int id { get; set; } = totalCharacters;
         public string Name { get; set; } = "Frodo";
         public int HitPoints { get; set; } = 100;
         public int Strength { get; set; } = 10;
@@ -18,7 +18,7 @@ namespace dotnet_prac.Models
 
         public Character()
         {
-            idNum++;
+            totalCharacters++;
         }
 
     }

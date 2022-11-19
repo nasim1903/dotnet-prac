@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using dotnet_prac.Dtos.Character;
 using dotnet_prac.Services.CharacterServices;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,8 +19,8 @@ namespace dotnet_prac.Controllers
             _characterService = characterService;
         }
 
-        [HttpGet]
-        public async Task<ActionResult<ServiceResponse<List<Character>>>> Get()
+        [HttpGet("GetAll")]
+        public async Task<ActionResult<ServiceResponse<List<GetCharacterDto>>>> Get()
         {
             return Ok(await _characterService.GetAllCharacters());
         }
@@ -31,11 +32,11 @@ namespace dotnet_prac.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<ServiceResponse<List<Character>>>> AddCharacter(Character newCharacter)
+        public async Task<ActionResult<ServiceResponse<List<Character>>>> AddCharacter(AddCharacterDto newCharacter)
         {
-            return Ok(await _characterService.AddSingleCharacter(newCharacter));
+            return Ok(await _characterService.AddCharacter(newCharacter));
         }
     }
 
 
-} 
+}
