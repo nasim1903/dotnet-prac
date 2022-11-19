@@ -50,15 +50,14 @@ namespace dotnet_prac.Services.CharacterServices
             var serviceResponse = new ServiceResponse<GetCharacterDto>();
             var character = characters.FirstOrDefault(c => c.id == id);
 
-            try{
-            character.Name = updateCharacter.Name;
-            character.HitPoints = updateCharacter.HitPoints;
-            character.Strength = updateCharacter.Strength;
-            character.Defense = updateCharacter.Defense;
-            character.Intelligence = updateCharacter.Intelligence;
+            try
+            {
+                _mapper.Map(updateCharacter, character);
 
-            serviceResponse.Data = _mapper.Map<GetCharacterDto>(character);
-            } catch (Exception ex){
+                serviceResponse.Data = _mapper.Map<GetCharacterDto>(character);
+            }
+            catch (Exception ex)
+            {
                 serviceResponse.success = false;
                 serviceResponse.Message = ex.Message;
             }
