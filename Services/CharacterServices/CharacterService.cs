@@ -11,7 +11,8 @@ namespace dotnet_prac.Services.CharacterServices
     {
         private static List<Character> characters = new List<Character> {
             new Character(),
-            new Character { id = 1, Name = "Sam" }
+            new Character {Name = "Sam" },
+            new Character {Name = "Manny" }
         };
         private readonly IMapper _mapper;
 
@@ -26,6 +27,26 @@ namespace dotnet_prac.Services.CharacterServices
             Character character = _mapper.Map<Character>(newCharacter);
             characters.Add(character);
             serviceResponse.Data = characters.Select(c => _mapper.Map<GetCharacterDto>(c)).ToList();
+            return serviceResponse;
+        }
+
+        public async Task<ServiceResponse<List<GetCharacterDto>>> DeleteCharacter(int id)
+        {
+            var serviceResponse = new ServiceResponse<List<GetCharacterDto>>();
+
+            try
+            {
+                var character = characters.First(c => c.id == id);
+                characters.Remove(character);
+
+                serviceResponse.Data = characters.Select(c => _mapper.Map<GetCharacterDto>(c)).ToList();
+            }
+            catch (Exception ex)
+            {
+                serviceResponse.success = false;
+                serviceResponse.Message = ex.Message;
+            }
+
             return serviceResponse;
         }
 
