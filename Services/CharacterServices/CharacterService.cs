@@ -56,7 +56,7 @@ namespace dotnet_prac.Services.CharacterServices
         }
 
         public async Task<ServiceResponse<List<GetCharacterDto>>> GetAllCharacters()
-        {       
+        {
             var response = new ServiceResponse<List<GetCharacterDto>>();
             var DbCharacters = await _context.Characters.ToListAsync();
             response.Data = DbCharacters.Select(c => _mapper.Map<GetCharacterDto>(c)).ToList();
@@ -74,13 +74,13 @@ namespace dotnet_prac.Services.CharacterServices
         public async Task<ServiceResponse<GetCharacterDto>> updateCharacter(UpdateCharacterDto updateCharacter, int id)
         {
             var serviceResponse = new ServiceResponse<GetCharacterDto>();
-            var character = characters.FirstOrDefault(c => c.id == id);
+            var DbCharacter = await _context.Characters.FirstOrDefaultAsync(c => c.id == id);
 
             try
             {
-                _mapper.Map(updateCharacter, character);
-
-                serviceResponse.Data = _mapper.Map<GetCharacterDto>(character);
+                _mapper.Map(updateCharacter, DbCharacter);
+                await _context.SaveChangesAsync();
+                serviceResponse.Data = _mapper.Map<GetCharacterDto>(DbCharacter);
             }
             catch (Exception ex)
             {
