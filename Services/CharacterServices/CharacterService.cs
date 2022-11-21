@@ -41,10 +41,11 @@ namespace dotnet_prac.Services.CharacterServices
 
             try
             {
-                var character = characters.First(c => c.id == id);
-                characters.Remove(character);
+                var DbCharacter = await _context.Characters.FirstAsync(c => c.id == id);
+                _context.Remove(DbCharacter);
+                await _context.SaveChangesAsync();
 
-                serviceResponse.Data = characters.Select(c => _mapper.Map<GetCharacterDto>(c)).ToList();
+                serviceResponse.Data = await _context.Characters.Select(c => _mapper.Map<GetCharacterDto>(c)).ToListAsync();
             }
             catch (Exception ex)
             {
