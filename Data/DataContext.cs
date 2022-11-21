@@ -13,6 +13,6 @@ namespace dotnet_prac.Data
 
         }
 
-        public DbSet<Character> Characters { get; set; }
+        public DbSet<Character> Characters => Set<Character>();
     }
 }
