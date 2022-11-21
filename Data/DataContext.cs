@@ -10,9 +10,9 @@ namespace dotnet_prac.Data
     {
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
-            
+
         }
 
-        public DbSet<Character>? Characters => Set<Character>();
+        public DbSet<Character> Characters { get; set; }
     }
 }
