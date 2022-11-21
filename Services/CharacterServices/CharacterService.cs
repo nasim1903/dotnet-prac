@@ -11,11 +11,6 @@ namespace dotnet_prac.Services.CharacterServices
 {
     public class CharacterService : ICharacterService
     {
-        private static List<Character> characters = new List<Character> {
-            new Character(),
-            new Character {Name = "Sam" },
-            new Character {Name = "Manny" }
-        };
         private readonly IMapper _mapper;
         private readonly DataContext _context;
 
