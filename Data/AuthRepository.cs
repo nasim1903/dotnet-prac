@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace dotnet_prac.Data
 {
@@ -31,9 +32,12 @@ namespace dotnet_prac.Data
             return response;
         }
 
-        public Task<bool> UserExist(string username)
+        public async Task<bool> UserExist(string username)
         {
-            throw new NotImplementedException();
+            if(await _context.Users.AnyAsync(c => c.UserName.ToLower() == username.ToLower())){
+                return true;
+            }
+            return false;
         }
         private void CreateHashPassword(string password, out byte[] passwordHash, out byte[] passwordSalt)
         {
