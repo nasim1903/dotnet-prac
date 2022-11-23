@@ -11,7 +11,7 @@ using dotnet_prac.Data;
 namespace dotnetprac.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20221121114312_initialCreate")]
+    [Migration("20221123120820_initialCreate")]
     partial class initialCreate
     {
         /// <inheritdoc />

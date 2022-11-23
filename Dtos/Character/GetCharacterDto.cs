@@ -7,8 +7,7 @@ namespace dotnet_prac.Dtos.Character
 {
     public class GetCharacterDto
     {
-        public static int idNum = 0;
-        public int id { get; set; } = idNum;
+        public int id { get; set; }
         public string Name { get; set; } = "Frodo";
         public int HitPoints { get; set; } = 100;
         public int Strength { get; set; } = 10;
@@ -16,9 +15,6 @@ namespace dotnet_prac.Dtos.Character
         public int Intelligence { get; set; } = 10;
         public RpgClass Class { get; set; } = RpgClass.Knight;
 
-        public GetCharacterDto()
-        {
-            idNum++;
-        }
+
     }
 }
