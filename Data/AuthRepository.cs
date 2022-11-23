@@ -21,11 +21,16 @@ namespace dotnet_prac.Data
 
         public async Task<ServiceResponse<int>> Register(User user, string password)
         {
+            var response = new ServiceResponse<int>();
+            if(await UserExist(user.UserName)){
+                response.success = false;
+                response.Message = "This user already exists";
+            }
+
             CreateHashPassword(password, out byte[] passwordHash, out byte[] passwordSalt);
             user.PasswordHash = passwordHash;
             user.PasswordSalt = passwordSalt;
 
-            var response = new ServiceResponse<int>();
             _context.Add(user);
             await _context.SaveChangesAsync();
             response.Data = user.id;
