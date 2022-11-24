@@ -10,6 +10,6 @@ namespace dotnet_prac.Data
         Task<ServiceResponse<int>> Register(User user, string password);
         Task<ServiceResponse<string>> Login(string username, string password);
         Task<bool> UserExist(string username);
-        
+        Task<ServiceResponse<User>> DeleteUser(string username);
     }
 }

@@ -31,5 +31,14 @@ namespace dotnet_prac.Controllers
             return Ok(response);
         }
 
+        [HttpDelete("delete")]
+        public async Task<ActionResult<ServiceResponse<User>>> deleteUser(string username){
+            var response = await _authRepo.DeleteUser(username);
+            if(response.Data == null){
+                return BadRequest(response);
+            }
+            return Ok(response);
+        }
+
     }
 }
