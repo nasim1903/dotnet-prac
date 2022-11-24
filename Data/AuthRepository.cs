@@ -25,6 +25,7 @@ namespace dotnet_prac.Data
             if(await UserExist(user.UserName)){
                 response.success = false;
                 response.Message = "This user already exists";
+                return response;
             }
 
             CreateHashPassword(password, out byte[] passwordHash, out byte[] passwordSalt);
